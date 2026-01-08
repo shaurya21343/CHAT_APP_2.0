@@ -19,10 +19,11 @@ export const loginUser = async (req: Request, res: Response) => {
   username: user.username,
   profilePhoto: user.profilePhoto
 }), {
-  httpOnly: true,           // cannot access from JS (good)
-  secure: process.env.NODE_ENV === 'production', 
-  sameSite: 'lax',          // or 'none' + secure:true if cross-site
-  maxAge: 3600_000,         // 1 hour
+     httpOnly: true,      // prevent JS access
+    secure: true,        // must be true for HTTPS
+    sameSite: "none",    // allow cross-site (localhost -> render)
+    maxAge: 1000 * 60 * 60 * 24 // 1 day
+        // 1 hour
 });
 
         return res.status(200).json({ message: "Login successful." });

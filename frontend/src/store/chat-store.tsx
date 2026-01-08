@@ -5,7 +5,7 @@ const useChatStore = create((set) => ({
   messageRcever:  Object,
   setMessageRcever: (id: string) => {
 
-    fetch(`/api/utility/get-user-with-id?id=${id}`)
+    fetch(import.meta.env.VITE_BackendURI + `/api/utility/get-user-with-id?id=${id}`)
       .then((res) => res.json())
       .then((data) => {
         set({ messageRcever: data })

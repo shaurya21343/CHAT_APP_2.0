@@ -16,7 +16,7 @@ const Register: React.FC<{ toglePageFunction: () => void }> = ({ toglePageFuncti
       setLoading(true);
       setError("");
 
-      const res = await fetch("http://localhost:3000/api/user/register", {
+      const res = await fetch(import.meta.env.VITE_BackendURI + "/api/user/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),

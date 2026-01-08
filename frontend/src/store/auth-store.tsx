@@ -25,7 +25,7 @@ const useAuthStore = create<AuthState>((set) => ({
   // ✅ async action (NOT state)
   checkAuth: async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/user/check-auth", {
+      const res = await fetch(import.meta.env.VITE_BackendURI + "/api/user/check-auth", {
         method: "POST",
         credentials: "include", // important for cookies/JWT
       });

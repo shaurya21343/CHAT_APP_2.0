@@ -30,7 +30,7 @@ const HomePage: React.FC = () => {
   /* -------------------- API -------------------- */
 
   const fetchMessages = async (toUserId: string, cursor?: string | null) => {
-    const url = new URL('http://localhost:3000/api/message/fetch-messages');
+    const url = new URL(import.meta.env.VITE_BackendURI + '/api/message/fetch-messages');
     url.searchParams.append('toUserId', toUserId);
     if (cursor) url.searchParams.append('cursor', cursor);
 
@@ -44,7 +44,7 @@ const HomePage: React.FC = () => {
 
   const fetchSidebarUsers = async () => {
     const res = await fetch(
-      'http://localhost:3000/api/utility/get-user-for-sidebar',
+      import.meta.env.VITE_BackendURI + '/api/utility/get-user-for-sidebar',
       { credentials: 'include' }
     );
     const data = await res.json();
@@ -159,7 +159,7 @@ const HomePage: React.FC = () => {
   const sendMessage = async () => {
     if (!messageInput.trim() || !activeChatUser) return;
 
-    await fetch('http://localhost:3000/api/message/send-message', {
+    await fetch(import.meta.env.VITE_BackendURI + '/api/message/send-message', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
