@@ -21,7 +21,8 @@ app.use(cors({
 }));
 app.use(cookieParser());
 app.use(express.json());
-app.options("*", cors());
+app.options("/*", cors()); // ✅ FIXED
+
 
 
 // Database Connection
